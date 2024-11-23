@@ -1,3 +1,4 @@
+// SLIDESHOW SCRIPT
 let slideIndex = 0;
 showSlides(slideIndex);
 
