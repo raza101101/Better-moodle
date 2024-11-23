@@ -4,64 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BetterMoodle</title>
-    <!-- Link to external CSS for styling -->
-    <link rel="stylesheet" href="C:\xampp\htdocs\Web_Dev_001\css\style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-    <!-- Header with title and nav -->
     <header>
-        <h1>BetterMoodle</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Sign Up</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <a href="index.html">
+                <h1>BetterMoodle</h1>
+            </a>    
+            <nav>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- Main content with 3 items in a row, responsive design for 2x2, 1x4 for better look and feel -->
     <main>
-        <!-- Make the entire section clickable by wrapping the div inside anchor tags -->
-        <a href="profile.html" class="section-link">
-            <div class="section">
+        <section class="card">
+            <a href="profile.html">
                 <h2>Profile</h2>
                 <p>Access your personal information and settings.</p>
-            </div>
-        </a>
-
-        <a href="modules.html" class="section-link">
-            <div class="section">
+            </a>
+        </section>
+        <section class="card">
+            <a href="modules.html">
                 <h2>Modules</h2>
                 <p>View and complete course modules.</p>
-            </div>
-        </a>
-
-        <a href="shop.html" class="section-link">
-            <div class="section">
+            </a>
+        </section>
+        <section class="card">
+            <a href="shop.html">
                 <h2>Shop</h2>
                 <p>Purchase merch, digital products, and more.</p>
-            </div>
-        </a>
-
-        <a href="games.html" class="section-link">
-            <div class="section">
+            </a>
+        </section>
+        <section class="card">
+            <a href="games.html">
                 <h2>Games</h2>
                 <p>Access educational games and activities.</p>
+            </a>
+        </section>
+
+        <div class="imgtransform">
+            <div class="slideshow-container">
+                <div class="slide fade">
+                    <img src="media/image1.jpg" alt="Image 1">
+                </div>
+                <div class="slide fade">
+                    <img src="media/image2.jpg" alt="Image 2">
+                </div>
+                <div class="slide fade">
+                    <img src="media/image3.jpg" alt="Image 3">
+                </div>
+                <div class="slide fade">
+                    <img src="media/image4.jpg" alt="Image 4">
+                </div>    
+                <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                <a class="next" onclick="changeSlide(-1)">&#10095;</a>
             </div>
-        </a>
+        </div>
     </main>
 
-    <!-- Footer with divider line to make it look more clean -->
-    <hr>
     <footer>
-        <nav>
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact Us</a>
-        </nav>
-        <p>&copy; 2024 BetterMoodle</p>
+        <div class="footer-container">
+            <p>© 2024 BetterMoodle</p>
+            <a href="#">About Us</a> | <a href="#">Contact Us</a>
+        </div>
     </footer>
 
+<script src="js/indexscript.js"></script>
 </body>
-
 </html>
