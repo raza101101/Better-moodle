@@ -4,8 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Get references to sections and links
     const loginSection = document.getElementById('login-section');
     const registerSection = document.getElementById('register-section');
-    const toRegisterLink = document.getElementById('toRegister');
-    const toLoginLink = document.getElementById('toLogin');
+
 
     // Handle URL query parameter for switching
     const params = new URLSearchParams(window.location.search);
