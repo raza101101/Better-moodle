@@ -1,21 +1,33 @@
 // LOGIN/REGISTER SCRIPTS
 
-//  Login/Register Hide/Show script
-// Get references to elements
-const toRegisterLink = document.getElementById('toRegister');
-const toLoginLink = document.getElementById('toLogin');
-const loginSection = document.getElementById('login');
-const registerSection = document.getElementById('register');
+document.addEventListener('DOMContentLoaded', function () {
+    // Get references to sections and links
+    const loginSection = document.getElementById('login-section');
+    const registerSection = document.getElementById('register-section');
+    const toRegisterLink = document.getElementById('toRegister');
+    const toLoginLink = document.getElementById('toLogin');
 
-// Add event listeners for switching forms
-toRegisterLink.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default link behavior
-    loginSection.style.display = 'none'; // Hide login form
-    registerSection.style.display = 'block'; // Show register form
+    // Handle URL query parameter for switching
+    const params = new URLSearchParams(window.location.search);
+    const action = params.get('action');
+
+    if (action === 'register') {
+        loginSection.style.display = 'none';
+        registerSection.style.display = 'block';
+    } else {
+        loginSection.style.display = 'block';
+        registerSection.style.display = 'none';
+    }
+
+    // Event listeners for switching forms
+    if (toRegisterLink) {
+        toRegisterLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            loginSection.style.display = 'none';
+            registerSection.style.display = 'block';
+        });
+    }
+
+
 });
 
-toLoginLink.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default link behavior
-    registerSection.style.display = 'none'; // Hide register form
-    loginSection.style.display = 'block'; // Show login form
-});
