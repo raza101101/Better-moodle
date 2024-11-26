@@ -322,7 +322,7 @@ main {
 .contact-container {
     width: 100vw;
     background-image: url(/media/image5.png);
-    background-size: cover;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center center;
     color: #fff;
