@@ -14,6 +14,20 @@ body {
     color: #333;
 }
 
+/* Fade In Effect */
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  main {
+    animation: fadeIn 0.5s ease-out;
+  }
+
 /* Header */
 header {
     background-color: #004080;
@@ -328,4 +342,134 @@ main {
     background-position: center center;
     color: #fff;
     height: 356px;
+}
+
+/* About Us Page Styles */
+
+.aboutuscontainer1 {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.aboutussection {
+    color: black;
+    width: 800px;
+    flex: 1 1 300px;
+    align-self: flex-start;
+    height: 310px;
+}
+.aboutussection h1 {
+    font-size: 50px;
+}
+
+.ourmission {
+    color: black;
+    width: 930px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    height: 310px;
+    flex: 1 1 300px;
+    transition: transform 0.3s;
+    align-self: flex-start;
+}
+
+.ourmission:hover {
+    transform: translateY(-5px);
+    background-color: #ffd700
+}
+
+.ourmission h1 {
+    font-size: 35px;
+    font-style: bold;
+}
+
+.aboutuscontainer2 {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    gap: 1rem;
+}
+.whatweoffer {
+    color: black;
+    width: 800px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    height: 350px;
+    flex: 1 1 300px;
+    transition: transform 0.3s;
+    align-self: flex-start;
+}
+
+.whatweoffer:hover {
+    transform: translateY(-5px);
+    background-color: #ffd700
+}
+
+.whatweoffer h1 {
+    font-size: 35px;
+}
+.whatweoffer p {
+    margin-top: 0.5rem;
+}
+
+.ourvision {
+    color: black;
+    width: 930px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    height: 350px;
+    flex: 1 1 300px;
+    transition: transform 0.3s;
+    align-self: flex-start;
+}
+
+.ourvision:hover {
+    transform: translateY(-5px);
+    background-color: #ffd700;
+}
+
+.ourvision h1 {
+    font-size: 35px;
+}
+
+.offerlinks {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.whatweoffer a:hover {
+    color: #004080;
+}
+
+.aboutussection p1 {
+    font-weight: bold;
+    background-image: linear-gradient(80deg, #1100ff, #000000);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
+}
+
+.ourvision p1 {
+    font-weight: bold;
+    background-image: linear-gradient(80deg, #1100ff, #000000);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
+}
+
+.ourmission p1 {
+    font-weight: bold;
+    background-image: linear-gradient(80deg, #1100ff, #000000);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
 }
