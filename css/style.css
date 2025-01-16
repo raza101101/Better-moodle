@@ -474,6 +474,16 @@ main {
     font-weight: bold;
 }
 
+/* Cookie Policy Page Styles */
+
+.cookiecontainer {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    gap: 1rem;
+    height: 168vh;  
+}
+
 /* Privacy Policy Page Styles */
 
 .privpolcontainer1 {
@@ -481,7 +491,7 @@ main {
     justify-content: space-between; 
     align-items: flex-start;
     gap: 1rem;
-    height: 275vh;
+    height: 284vh;
 }
 
 .privpolsection {
