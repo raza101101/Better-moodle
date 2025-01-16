@@ -496,13 +496,20 @@ main {
 }
 
 .privpolsection h2 {
-    font-size: 20px;
+    font-size: 23px;
     margin-top: 1rem;
     color: #303030;
 }
 
 .privpolsection h3 {
-    font-size: 15px;
+    font-size: 18px;
+    color: #303030;
+    margin-top: 1rem;
+}
+
+.privpolsection sub {
+    background-color: #00254d;
+    color: #ffd700;
 }
 
 .privpolsection p {
