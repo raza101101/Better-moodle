@@ -111,6 +111,7 @@ main {
 .card h2 {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
+    font-weight: bold;
 }
 
 .card p {
@@ -120,7 +121,7 @@ main {
 .card a {
     color: #000000;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .card:hover {
