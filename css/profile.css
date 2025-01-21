@@ -1,0 +1,85 @@
+/* Profile Page Styles */
+
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+}
+
+/* Fade In Effect */
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  main {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Header */
+header {
+    background-color: #004080;
+    color: #fff;
+    padding: 2vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+header a {
+    text-decoration: none;
+    color: #fff;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #ffd700;
+}
+
+
+/* Footer */
+footer {
+    background-color: #00254d;
+    color: #fff;
+    text-align: center;
+    padding: 2vh;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer-container a {
+    color: #ffd700;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.footer-container a:hover {
+    text-decoration: underline;
+}

@@ -2,8 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     // Get references to sections and links
-    const loginSection = document.getElementById('login-section');
-    const registerSection = document.getElementById('register-section');
+    const loginSection = document.getElementById('login');
+    const registerSection = document.getElementById('register');
 
 
     // Handle URL query parameter for switching
@@ -17,16 +17,5 @@ document.addEventListener('DOMContentLoaded', function () {
         loginSection.style.display = 'block';
         registerSection.style.display = 'none';
     }
-
-    // Event listeners for switching forms
-    if (toRegisterLink) {
-        toRegisterLink.addEventListener('click', function (event) {
-            event.preventDefault();
-            loginSection.style.display = 'none';
-            registerSection.style.display = 'block';
-        });
-    }
-
-
 });
 
