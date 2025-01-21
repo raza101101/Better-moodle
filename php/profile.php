@@ -14,14 +14,14 @@ if (!isset($_SESSION['email'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Harzarian</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/profile.css">
     </head>
     <body>
         <!-- Page Header -->
         <header>
             <div class="container">
                 <!-- 'href' When clicked directs to specified page -->
-                <a href="index.html">
+                <a href="../index.html">
                     <h1>Harzarian</h1>
                 </a>    
                 <nav>
@@ -32,7 +32,7 @@ if (!isset($_SESSION['email'])) {
         </header>
         
         <main>
-            <div style="text-align: center; padding: 15%;">
+            <div style="text-align: center; padding: 3vh;">
                 <p style="font-size: 50px; font-weight: bold;">
                     Hello 
                     <?php
@@ -46,6 +46,7 @@ if (!isset($_SESSION['email'])) {
                         echo "User";
                     }
                     ?>
+                    !
                 </p>
                 <a href="logout.php">Log Out</a>
             </div>

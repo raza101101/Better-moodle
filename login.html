@@ -10,7 +10,7 @@
         <!-- Page Header -->
         <header>
             <div class="container">
-                <a href="../index.html">
+                <a href="../Better-moodle/index.html">
                     <h1>Harzarian</h1>
                 </a>    
                 <nav>
@@ -24,7 +24,7 @@
             <!-- Login Section -->
             <section id="login" class="login-container">
                 <h2>Login</h2>
-                <form action="login.php?action=login" method="POST" class="login-form">
+                <form action="php/auth.php?action=login" method="POST" class="login-form">
                     <input type="email" id="email" name="email" placeholder="Email" required>
                     <input type="password" id="password" name="password" placeholder="Password" required>
                     <div class="remember-forgot-container">
@@ -39,7 +39,7 @@
             <!-- Register Section -->
             <section id="register" class="register-container" style="display: none;">
                 <h2>Register</h2>
-                <form action="login.php?action=register" method="POST" class="login-form">
+                <form action="php/auth.php?action=register" method="POST" class="login-form">
                     <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
                     <input type="text" id="lastname" name="lastname" placeholder="Last Name" required>
                     <input type="email" id="email" name="email" placeholder="Email" required>

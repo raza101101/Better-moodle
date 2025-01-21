@@ -1,0 +1,196 @@
+/* About Us Page Styles */
+main {
+    flex: 1;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Container styles */
+.aboutuscontainer1, .aboutuscontainer2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    width: 100%;
+}
+
+.aboutuscontainer2 {
+    padding-bottom: 6vh;
+}
+
+.aboutussection {
+    color: black;
+    background: transparent;
+    padding: 1rem;
+    height: 100%;
+}
+
+.aboutussection h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Card styles */
+.ourmission, .whatweoffer, .ourvision {
+    color: black;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s;
+}
+
+.ourmission:hover, .whatweoffer:hover, .ourvision:hover {
+    transform: translateY(-5px);
+    background-color: #ffd700;
+}
+
+.ourmission h1, .whatweoffer h1, .ourvision h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.whatweoffer p {
+    margin-bottom: 1rem;
+}
+
+/* Link styles */
+.offerlinks {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.whatweoffer a:hover {
+    color: #004080;
+}
+
+/* Gradient text */
+.aboutussection p1, .ourvision p1, .ourmission p1 {
+    font-weight: bold;
+    background-image: linear-gradient(80deg, #1100ff, #000000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
+/* Responsive design */
+@media screen and (max-width: 1024px) {
+    .aboutuscontainer1, .aboutuscontainer2 {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    main {
+        padding: 1.5rem;
+        padding-bottom: 5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        padding: 1rem;
+        padding-bottom: 4rem;
+    }
+
+    .aboutussection h1 {
+        font-size: 2rem;
+    }
+
+    .ourmission h1, .whatweoffer h1, .ourvision h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+}
+
+/* Fade In Effect */
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  main {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Header */
+header {
+    background-color: #004080;
+    color: #fff;
+    padding: 2vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+header a {
+    text-decoration: none;
+    color: #fff;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #ffd700;
+}
+
+
+/* Footer */
+footer {
+    background-color: #00254d;
+    color: #fff;
+    text-align: center;
+    padding: 2vh;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer-container a {
+    color: #ffd700;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.footer-container a:hover {
+    text-decoration: underline;
+}
