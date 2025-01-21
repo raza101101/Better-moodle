@@ -1,66 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BetterMoodle</title>
-    <!-- Link to external CSS for styling -->
-    <link rel="stylesheet" href="C:\xampp\htdocs\Better_moodle\css\style.css">
-</head>
-<body>
-
-    <!-- Header with title and nav -->
-    <header>
-        <h1>BetterMoodle</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Sign Up</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main content with 3 items in a row, responsive design for 2x2, 1x4 for better look and feel -->
-    <main>
-        <!-- Make the entire section clickable by wrapping the div inside anchor tags -->
-        <a href="profile.html" class="section-link">
-            <div class="section">
-                <h2>Profile</h2>
-                <p>Access your personal information and settings.</p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Harzarian</title>
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body>
+        <!-- Page Header -->
+        <header>
+            <div class="container">
+                <!-- 'href' When clicked directs to specified page -->
+                <a href="index.html">
+                    <h1>Harzarian</h1>
+                </a>    
+                <nav>
+                    <a href="php/login.php?action=login">Login</a>
+                    <a href="php/login.php?action=register">Register</a>
+                </nav>
             </div>
-        </a>
+        </header>
+        
+        <main>
+            <!-- Allows for the card to be styled in CSS -->
+            <section class="card">
+                <a href="php/profile.php">
+                    <h2>Profile</h2>
+                    <p>Access your personal information and settings.</p>
+                </a>
+            </section>
+            <section class="card">
+                <a href="shop.html">
+                    <h2>Shop</h2>
+                    <p>Purchase merch, digital products, and more.</p>
+                </a>
+            </section>
+            <section class="card">
+                <a href="games.html">
+                    <h2>Games</h2>
+                    <p>Access educational games and activities.</p>
+                </a>
+            </section>
 
-        <a href="modules.html" class="section-link">
-            <div class="section">
-                <h2>Modules</h2>
-                <p>View and complete course modules.</p>
+            <!-- Divs to set styles in CSS -->
+            <div class="imgtransform">
+                <!-- Creates a container for the slideshow -->
+                <div class="slideshow-container">
+                    <!-- Each class is an image/slide -->
+                    <div class="slide fade">
+                        <img src="media/image1.jpg" alt="Image 1">
+                    </div>
+                    <div class="slide fade">
+                        <img src="media/image2.jpg" alt="Image 2">
+                    </div>
+                    <div class="slide fade">
+                        <img src="media/image3.jpg" alt="Image 3">
+                    </div>
+                    <div class="slide fade">
+                        <img src="media/image4.jpg" alt="Image 4">
+                    </div>    
+                    <!-- Uses JS to program the next and previous buttons -->
+                    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="changeSlide(-1)">&#10095;</a>
+                </div>
             </div>
-        </a>
-
-        <a href="shop.html" class="section-link">
-            <div class="section">
-                <h2>Shop</h2>
-                <p>Purchase merch, digital products, and more.</p>
+        </main>
+        <!-- Page Footer -->
+        <footer>
+            <div class="footer-container">
+                <p>© 2024 Harzarian</p>
+                <a href="about_us.html">About Us</a> | <a href="contact.html">Contact Us</a> | <a href="cookies.html">Cookies Policy</a> | <a href="privacy_policy.html">Privacy Policy</a>
             </div>
-        </a>
-
-        <a href="games.html" class="section-link">
-            <div class="section">
-                <h2>Games</h2>
-                <p>Access educational games and activities.</p>
-            </div>
-        </a>
-    </main>
-
-    <!-- Footer with divider line to make it look more clean -->
-    <hr>
-    <footer>
-        <nav>
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact Us</a>
-        </nav>
-        <p>&copy; 2024 BetterMoodle</p>
-    </footer>
-
-</body>
+        </footer>
+        <!-- Links the page to the JS -->
+        <script src="js/indexscript.js"></script>
+    </body>
 </html>
