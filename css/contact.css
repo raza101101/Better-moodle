@@ -1,12 +1,27 @@
 /* Contact Page Styles */
 .contact-container {
     width: 100vw;
-    background-image: url(/media/image5.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center center;
     color: #fff;
     height: 356px;
+    text-align: center;
+}
+#staffH{
+    text-align: center;
+    font-style: "Verdana";
+    font-size: 25px;
+}
+#ContactList {
+    list-style-type: none;
+}
+#kieraninfo{
+    position: relative;
+    right: 30%;
+    text-align: center;
+    font-style: "Verdana";
+    font-size: 18px;
 }
 
 /* General Styles */
