@@ -1,12 +1,61 @@
 /* Contact Page Styles */
-.contact-container {
-    width: 100vw;
-    background-image: url(/media/image5.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    color: #fff;
-    height: 356px;
+.contact-containerUpper {
+    color: #000000;
+    font-family: "Verdana", sans-serif;
+    text-align: center;
+
+}
+.contactH1{
+    text-decoration: underline;
+}
+
+#staffH{
+    text-align: center;
+    font-family: "Verdana";
+    font-size: 25px;
+    position:relative;
+    top: 77%;
+    text-decoration: underline;
+    
+}
+
+#ContactList {
+    list-style-type: none;
+}
+
+.contact-containerLower {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative; 
+    align-items: flex-end;
+    width: 100%;
+    padding: 10px 0; 
+    margin-top: 280px;
+}
+
+.contact-containerLower div {
+    text-align: center;
+    font-family: "Verdana", sans-serif; 
+    font-size: 18px
+}
+
+#imgstyle img {
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@media (max-width: 600px) {
+    .contact-containerLower {
+        flex-direction: column; 
+        bottom: 5%;
+    }
+
+    .contact-containerLower div {
+        margin-bottom: 10px;
+    }
 }
 
 /* General Styles */
