@@ -82,3 +82,45 @@ footer {
 .footer-container a:hover {
     text-decoration: underline;
 }
+
+/* Privacy Policy Page Styles */
+
+.privpolcontainer {
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    gap: 1rem;
+    height: 287vh;
+}
+
+.privpolsection {
+    color: black;
+    flex: 1 1 300px;
+    align-self: flex-start;
+}
+
+.privpolsection h1 {
+    font-size: 50px;
+    
+}
+
+.privpolsection h2 {
+    font-size: 20px;
+    margin-top: 1rem;
+    color: #303030;
+}
+
+.privpolsection h3 {
+    font-size: 15px;
+}
+
+.privpolsection p {
+    margin-top: 0.5rem;
+    color: #404040;
+}
+
+.privpolsection li {
+    margin-left: 2rem;
+    color: #404040;
+}

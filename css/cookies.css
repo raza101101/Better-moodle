@@ -82,3 +82,52 @@ footer {
 .footer-container a:hover {
     text-decoration: underline;
 }
+
+/* Cookies Page Styles */
+
+.cookiecontainer {
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    gap: 1rem;
+    height: 165vh;
+}
+
+.cookiesection {
+    color: black;
+    flex: 1 1 300px;
+    align-self: flex-start;
+}
+
+.cookiesection h1 {
+    font-size: 50px;
+    
+}
+
+.cookiesection h2 {
+    font-size: 23px;
+    margin-top: 1rem;
+    color: #303030;
+}
+
+.cookiesection h3 {
+    font-size: 18px;
+    color: #303030;
+    margin-top: 1rem;
+}
+
+.cookiesection sub {
+    background-color: #00254d;
+    color: #ffd700;
+}
+
+.cookiesection p {
+    margin-top: 0.5rem;
+    color: #404040;
+}
+
+.cookiesection li {
+    margin-left: 2rem;
+    color: #404040;
+}
