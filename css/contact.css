@@ -14,7 +14,7 @@
     font-family: "Verdana";
     font-size: 25px;
     position:relative;
-    top: 77%;
+    top: 5%;
     text-decoration: underline;
     
 }
@@ -31,7 +31,7 @@
     align-items: flex-end;
     width: 100%;
     padding: 10px 0; 
-    margin-top: 280px;
+    margin-top: 50px;
 }
 
 .contact-containerLower div {
@@ -139,4 +139,71 @@ footer {
 
 .footer-container a:hover {
     text-decoration: underline;
+}
+
+/* Style for the Query Form */
+.query-form {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.query-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Input Fields */
+.query-form label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #555;
+}
+
+.query-form input,
+.query-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+.query-form input:focus,
+.query-form textarea:focus {
+    border-color: #007bff;
+}
+
+/* Submit Button */
+.query-form button {
+    width: 100%;
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.query-form button:hover {
+    background: #0056b3;
+}
+
+/* Response Message */
+#responseMessage {
+    margin-top: 15px;
+    font-size: 16px;
+    color: green;
 }

@@ -26,6 +26,24 @@
                 <p class = contactP1> We have avalbility for any inquery, so if you have a any concerns or problems, please contact us we would like to hear from you.</p>
             </section>
 
+          <!-- Input for user to submit a query -->  
+          <section class="query-form">
+            <h2>Submit Your Query</h2>
+            <form id="contactForm">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+        
+                <label for="query">Your Query:</label>
+                <textarea id="query" name="query" rows="4" required></textarea>
+        
+                <button type="submit">Submit</button>
+            </form>
+            <p id="responseMessage"></p>
+        </section>
+        
+        <script src="js/contact.js"></script>
+
+
             <!-- contact section -->
             <h1 id = staffH> Staff Contact Information </h1>
 
@@ -33,7 +51,7 @@
                 <section class = contact-containerLower>
                     <div id = "kieraninfo">
                         <ol id = "ContactList">
-                            <div id = imgstyle><img src="media/kieran/KieranImg.jpg" alt="Kieran Image"></div>
+                            <div id = imgstyle><img src="media/kieran/Kieran.png" alt="Kieran Image"></div>
                             <li> <h5>Kieran Taylor</h5> </li>
                             <li> Id: 23005804 </li>
                             <li> Phone number: 07984365626 </li>
@@ -54,6 +72,7 @@
 
                     <div id = "razainfo">
                         <ol id = "ContactList">
+                            <div id = imgstyle><img src="media/Blank.jpg" alt="Blank Image"></div>
                             <li> <h5>Hasan R Hussain</h5> </li>
                             <li> Id: 22012822 </li>
                             <li> Phone number: 07948743896 </li>
@@ -62,18 +81,20 @@
 
                     <div id = "jessieinfo">
                         <ol id = "ContactList">
+                            <div id = imgstyle><img src="media/Jessie.jpg" alt="Jessie Image"></div>
                             <li> <h5>Jessie Dawson</h5> </li>
                             <li> Id: 23012213 </li>
                             <li> Phone number: 07940499436 </li>
                             <li> <a href="mailto:23012213@hope.ac.uk"> Email: 23012213@hope.ac.uk </a></li>
                     </div>    
 
-                    <div id ="davidinfo">
+                    <div id ="Jermaineinfo">
                         <ol id = "ContactList">
-                            <li> <h5>David Casarejos Romero</h5> </li>
-                            <li> Id: 23012211 </li>
+                            <div id = imgstyle><img src="media/Blank.jpg" alt="Blank Image"></div>
+                            <li> <h5>Jermaine Gardener</h5> </li>
+                            <li> Id: 23006783 </li>
                             <li> Phone number: 07960394024 </li>
-                            <li> <a href="mailto:23012211@hope.ac.uk"> Email: 23012211@hope.ac.uk </a></li>
+                            <li> <a href="mailto:23012211@hope.ac.uk"> Email: 23006783@hope.ac.uk </a></li>
                     </div>    
                 </section>
             </main>
