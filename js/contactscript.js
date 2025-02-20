@@ -3,7 +3,7 @@ document.getElementById("contactForm").addEventListener("submit", function (even
 
     let formData = new FormData(this);
 
-    fetch("submit_query.php", {
+    fetch("contact.php", {
         method: "POST",
         body: formData
     })
