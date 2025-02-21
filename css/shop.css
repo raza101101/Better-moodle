@@ -7,7 +7,7 @@
 }
 
 body {
-    height: 110vh;
+    height: 140vh;
     margin: 0;
     padding: 0;
     display: flex;
@@ -82,3 +82,29 @@ footer {
 
 
 /* shop styles */
+/*shop front page*/
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: #f3f3f3;
+    padding: 20px 0;
+}
+
+.carousel {
+    display: flex;
+    width: 300%; /* Enough space for images */
+    animation: slide 10s linear infinite;
+}
+
+.carousel img {
+    width: 200px; 
+    height: 150px; 
+    margin: 0 15px;
+    border-radius: 10px;
+}
+
+@keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.33%); } /* Move to the left */
+}

@@ -67,7 +67,7 @@
 }
 
 body {
-    min-height: 100vh;
+    min-height: 130vh;
     margin: 0;
     padding: 0;
     display: flex;
@@ -140,6 +140,7 @@ footer {
 .footer-container a:hover {
     text-decoration: underline;
 }
+
 
 /* Style for the Query Form */
 .query-form {
