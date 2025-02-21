@@ -1,0 +1,284 @@
+/* General Styles */
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Verdana', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5; /* Light gray background for consistency */
+    color: #000; /* Black text for readability on light background */
+}
+
+/* Fade In Effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Cards (copied directly from index.css) */
+.card {
+    width: 500px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    transition: transform 0.3s;
+    margin: 0.5rem 0;
+    align-self: center;
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.card h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #000; /* Black text for white background */
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #000; /* Black text for white background */
+}
+
+.card a {
+    color: #000; /* Black text for links */
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.card form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card input, .card select, .card textarea {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff; /* White background for inputs */
+    color: #000; /* Black text for inputs */
+}
+
+.card button {
+    background-color: #004080; /* Blue button to match index */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.card button:hover {
+    background-color: #003366; /* Darker blue on hover */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    background-color: #f0f0f0; /* Light gray on hover, matching index */
+}
+
+main {
+    animation: fadeIn 0.5s ease-out;
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    background-color: #f5f5f5; /* Light background to match index */
+}
+
+/* Header */
+header {
+    background-color: #004080; /* Blue header matching your theme */
+    color: #fff;
+    padding: 2vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+header a {
+    text-decoration: none;
+    color: #fff;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #ffd700; /* Yellow hover for navigation links */
+}
+
+/* Edit Form */
+.edit-form {
+    max-width: 600px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 12px; /* Slightly larger radius for a modern look */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+    padding: 2rem;
+    margin: 0 auto;
+    transition: transform 0.3s;
+}
+
+.edit-form:hover {
+    transform: translateY(-2px); /* Slight lift on hover for interactivity */
+}
+
+.edit-form h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #000;
+    text-align: center;
+}
+
+.error, .success {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 4px;
+}
+
+.error {
+    color: #ff0000; /* Red for errors */
+    background-color: #ffebee; /* Light red background */
+    border: 1px solid #ffcdd2;
+}
+
+.success {
+    color: #00ff00; /* Green for success */
+    background-color: #e8f5e9; /* Light green background */
+    border: 1px solid #c8e6c9;
+}
+
+/* Form Elements */
+.edit-form label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    color: #333; /* Darker gray for labels */
+}
+
+.edit-form input, .edit-form select, .edit-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Smaller radius for inputs */
+    font-size: 1rem;
+    background-color: #fff;
+    color: #000;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s;
+}
+
+.edit-form input:focus, .edit-form select:focus, .edit-form textarea:focus {
+    border-color: #004080; /* Blue focus outline for interactivity */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 64, 128, 0.3);
+}
+
+.edit-form button {
+    background-color: #004080; /* Blue button matching your theme */
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.edit-form button:hover {
+    background-color: #003366; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Footer */
+footer {
+    background-color: #00254d; /* Dark blue footer matching your theme */
+    color: #fff;
+    text-align: center;
+    padding: 2vh;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer-container a {
+    color: #ffd700; /* Yellow links for contrast */
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+}
+
+.footer-container a:hover {
+    text-decoration: underline;
+    color: #ffeb3b; /* Brighter yellow on hover */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    main {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+
+    .edit-form {
+        max-width: 100%;
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+
+    header {
+        padding: 1.5vh;
+    }
+
+    header h1 {
+        font-size: 1.25rem;
+    }
+
+    .edit-form h2 {
+        font-size: 1.25rem;
+    }
+
+    .edit-form button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    main {
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+
+    footer {
+        padding: 1.5vh;
+    }
+}

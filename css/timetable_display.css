@@ -1,0 +1,110 @@
+/* Timetable Styling */
+.timetable-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.timetable {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-left: 2rem;
+    max-width: 700px;
+}
+
+.timetable table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.timetable th, .timetable td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.timetable th {
+    background-color: #004080;
+    color: #fff;
+}
+
+.timetable td {
+    background-color: #e6f0ff;
+}
+
+.timetable .time-slot {
+    font-weight: bold;
+}
+
+/* Event Box Styling */
+.event-box {
+    background-color: #e6f0ff;
+    padding: 0.3rem;
+    border-radius: 4px;
+    max-height: 40px; /* Limit height to crop content */
+    overflow: hidden; /* Crop content that doesn’t fit */
+    cursor: pointer; /* Indicate clickable */
+    transition: max-height 0.3s ease; /* Smooth transition for hover */
+}
+
+.event-box:hover {
+    max-height: 80px; /* Expand slightly on hover to show more, if needed */
+    overflow: auto; /* Allow scrolling if content overflows after expansion */
+}
+
+/* Modal Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.modal-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #000;
+}
+
+.modal-content p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: #000;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.close-modal:hover {
+    color: #004080;
+}

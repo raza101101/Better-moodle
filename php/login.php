@@ -56,6 +56,12 @@
                     <input type="text" id="lastname" name="lastname" placeholder="Last Name" required>
                     <input type="email" id="emailReg" name="email" placeholder="Email" required>
                     <input type="password" id="registerPassword" name="password" placeholder="Password" required>
+                    <select name="role" id="role" required>
+                        <option value="">Select Role</option>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                    <input type="text" id="course_key" name="course_key" placeholder="Enter Course Key" required>
                     <button type="submit" class="btn" name="register">Register</button>
                 </form>
                 <p class="signup-link">Already have an account? <a href="login.php?action=login">Log In</a></p>
