@@ -7,7 +7,7 @@
 }
 
 body {
-    height: 140vh;
+    height: 116vh;
     margin: 0;
     padding: 0;
     display: flex;
@@ -23,11 +23,12 @@ body {
     to {
       opacity: 1;
     }
-  }
-  
-  main {
+}
+
+main {
     animation: fadeIn 0.5s ease-out;
 }
+
 /* Header */
 header {
     background-color: #004080;
@@ -58,7 +59,6 @@ header nav a:hover {
     color: #ffd700;
 }
 
-
 /* Footer */
 footer {
     background-color: #00254d;
@@ -80,31 +80,105 @@ footer {
     text-decoration: underline;
 }
 
+/* Shop Styles */
+.WelcomeShop {
+    color: #000000;
+    font-family: "Verdana", sans-serif;
+    text-align: center;
+    font-size: 14px;
+}
+#headerC {
+    text-decoration: underline;
+}
 
-/* shop styles */
-/*shop front page*/
+/* Physical Products Section */
+.PhysContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    top: 7vh;
+    text-decoration: underline;
+    font-family: "Verdana", sans-serif;
+}
+
+/* Digital Products Section */
+.DigiContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    top: 11vh; 
+    text-decoration: underline;
+    font-family: "Verdana", sans-serif;
+}
+
+/* Carousel with infinite scrolling */
 .carousel-container {
     width: 100%;
     overflow: hidden;
     position: relative;
     background-color: #f3f3f3;
     padding: 20px 0;
+    margin-bottom: 20px;
+    animation: fadeIn 0.8s ease-out;
+    white-space: nowrap; 
 }
 
+/* Create a seamless scrolling effect */
 .carousel {
     display: flex;
-    width: 300%; /* Enough space for images */
-    animation: slide 10s linear infinite;
+    width: fit-content;
+    animation: slide 20s linear infinite;
 }
 
+/* Duplicate images inside the carousel */
 .carousel img {
     width: 200px; 
     height: 150px; 
     margin: 0 15px;
     border-radius: 10px;
+    display: inline-block;
 }
 
+/* Smooth infinite scrolling effect */
 @keyframes slide {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-33.33%); } /* Move to the left */
+    0% { transform: translateX(0); }  
+    100% { transform: translateX(-50%); } 
 }
+
+/* General Button Styles */
+.PhysButton, .DigiButton {
+    width: 100%;
+    max-width: 260px;
+    background: #004080;
+    color: white;
+    padding: 12px; 
+    font-size: 14px;
+    font-family: 'Verdana', sans-serif; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    display: block;
+    margin: 10px auto; 
+}
+
+/* Fixes physical button postion*/
+.PhysButton{
+    position: relative;
+    bottom: 60%;
+}
+
+/* Hover Effect */
+.PhysButton:hover, .DigiButton:hover {
+    background: #003366;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+
+
