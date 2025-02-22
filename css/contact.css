@@ -1,7 +1,7 @@
 /* Contact Page Styles */
 .contact-containerUpper {
     color: #000000;
-    font-family: "Verdana", sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
 
 }
@@ -11,7 +11,7 @@
 
 #staffH{
     text-align: center;
-    font-family: "Verdana";
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 25px;
     position:relative;
     top: 5%;
@@ -21,6 +21,7 @@
 
 #ContactList {
     list-style-type: none;
+    padding-bottom: 80px;
 }
 
 .contact-containerLower {
@@ -36,7 +37,7 @@
 
 .contact-containerLower div {
     text-align: center;
-    font-family: "Verdana", sans-serif; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px
 }
 
@@ -59,20 +60,16 @@
 }
 
 /* General Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
 body {
-    min-height: 130vh;
     margin: 0;
     padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.2;
+    background-color: #f5f7fa;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #f5f5f5;
+    overflow-x: hidden;
 }
 
 /* Fade In Effect */
@@ -89,10 +86,17 @@ body {
     animation: fadeIn 0.5s ease-out;
 }
 
-/* Header */
+/* Header styles */
 header {
-    background-color: #004080;
-    color: #fff;
+    background-color: #1a4789;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100vw;
+}
+
+.container {
+    max-width: 90vw;
+    margin: 0 auto;
     padding: 2vh;
     display: flex;
     justify-content: space-between;
@@ -100,39 +104,36 @@ header {
 }
 
 header h1 {
-    font-size: 1.5rem;
+    margin: 0;
 }
 
 header a {
+    color: white;
     text-decoration: none;
-    color: #fff;
-}
-
-header nav a {
-    color: #fff;
-    text-decoration: none;
-    margin-left: 1.5rem;
-    transition: color 0.3s;
-}
-
-header nav a:hover {
-    color: #ffd700;
 }
 
 
-/* Footer */
+/* Footer styles */
 footer {
-    background-color: #00254d;
-    color: #fff;
+    background-color: #1a4789;
+    color: white;
+    margin-top: auto;
     text-align: center;
-    padding: 2vh;
+    padding: 1.3vh;
     width: 100vw;
     position: fixed;
     bottom: 0;
 }
 
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
 .footer-container a {
-    color: #ffd700;
+    color: white;
     text-decoration: none;
     margin: 0 0.5rem;
 }

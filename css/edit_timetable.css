@@ -99,36 +99,30 @@ main {
     background-color: #f5f5f5; /* Light background to match index */
 }
 
-/* Header */
+/* Header styles */
 header {
-    background-color: #004080; /* Blue header matching your theme */
-    color: #fff;
+    background-color: #1a4789;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100vw;
+}
+
+.container {
+    max-width: 90vw;
+    margin: 0 auto;
     padding: 2vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
 }
 
 header h1 {
-    font-size: 1.5rem;
-    font-weight: bold;
+    margin: 0;
 }
 
 header a {
+    color: white;
     text-decoration: none;
-    color: #fff;
-}
-
-header nav a {
-    color: #fff;
-    text-decoration: none;
-    margin-left: 1.5rem;
-    transition: color 0.3s;
-}
-
-header nav a:hover {
-    color: #ffd700; /* Yellow hover for navigation links */
 }
 
 /* Edit Form */
@@ -218,27 +212,33 @@ header nav a:hover {
     transform: translateY(-2px); /* Slight lift on hover */
 }
 
-/* Footer */
+/* Footer styles */
 footer {
-    background-color: #00254d; /* Dark blue footer matching your theme */
-    color: #fff;
+    background-color: #1a4789;
+    color: white;
+    margin-top: auto;
     text-align: center;
-    padding: 2vh;
+    padding: 1.3vh;
     width: 100vw;
     position: fixed;
     bottom: 0;
 }
 
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
 .footer-container a {
-    color: #ffd700; /* Yellow links for contrast */
+    color: white;
     text-decoration: none;
     margin: 0 0.5rem;
-    transition: color 0.3s;
 }
 
 .footer-container a:hover {
     text-decoration: underline;
-    color: #ffeb3b; /* Brighter yellow on hover */
 }
 
 /* Responsive Design */

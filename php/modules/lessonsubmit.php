@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("connect.php");
+include("../connect.php");
 
 if (!isset($_SESSION['email']) || $_SESSION['role'] !== 'student') {
     header("Location: profile.php");
@@ -55,7 +55,7 @@ if (isset($_FILES['document'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harzarian - Submit Assignment</title>
-    <link rel="stylesheet" href="../css/modules.css">
+    <link rel="stylesheet" href="../../css/modules.css">
 </head>
 <body>
     <header>
@@ -93,7 +93,7 @@ if (isset($_FILES['document'])) {
             </form>
         </div>
         <div class="returnhome">
-            <a href="moduleinfo.php?module_id=<?php echo $assignment['module_id']; ?>" class="returnbutton">Back to Lessons</a>
+            <a href="moduleinfo.php?module_id=<?php echo $assignment['module_id']; ?>" class="returnbutton">Back to Units</a>
         </div>
     </main>
     <footer>

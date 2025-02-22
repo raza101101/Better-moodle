@@ -9,7 +9,8 @@ if ($course_id === null) {
     exit();
 }
 
-$stmt = $conn->prepare("SELECT day_of_week, time_slot, event_name, event_description FROM timetables WHERE course_id = ? ORDER BY FIELD(day_of_week, 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'), time_slot");
+// Fetch timetable data
+$stmt = $conn->prepare("SELECT day_of_week, time_slot, event_name, event_description FROM timetables WHERE course_id = ? ORDER BY FIELD(day_of_week, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'), time_slot");
 $stmt->bind_param("i", $course_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -34,7 +35,7 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harzarian - Timetable</title>
-    <link rel="stylesheet" href="../css/timetable_display.css"> <!-- Include your existing CSS for consistency -->
+    <link rel="stylesheet" href="../css/profile.css"> <!-- Include your existing CSS for consistency -->
     <style>
         /* Timetable Styling */
         .timetable-container {
@@ -52,7 +53,7 @@ $stmt->close();
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 1rem;
             margin-left: 2rem;
-            max-width: 700px;
+            max-width: 720px;
         }
 
         .timetable table {
@@ -146,11 +147,32 @@ $stmt->close();
         .close-modal:hover {
             color: #004080;
         }
+
+        /* Delete Button in Modal */
+        .delete-button {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: #ff4444; /* Red for delete */
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .delete-button:hover {
+            background-color: #cc0000; /* Darker red on hover */
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
     <h2>Timetable (Feb 16 – 22, 2025)</h2>
-    <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+    <div class="timetable-nav">
         <button style="background-color: #e6f0ff; border: 1px solid #ccc; padding: 0.5rem; border-radius: 4px; cursor: pointer; margin-right: 0.5rem;">Today</button>
         <button style="background-color: #e6f0ff; border: 1px solid #ccc; padding: 0.5rem; border-radius: 4px; cursor: pointer;"><</button>
         <button style="background-color: #e6f0ff; border: 1px solid #ccc; padding: 0.5rem; border-radius: 4px; cursor: pointer;">></button>
@@ -168,7 +190,7 @@ $stmt->close();
                 <?php foreach ($days as $day): ?>
                     <td>
                         <?php if ($timetable[$day][$time]['event_name']): ?>
-                            <div class="event-box" data-modal-content='{"event_name": "<?php echo htmlspecialchars($timetable[$day][$time]['event_name']); ?>", "event_description": "<?php echo htmlspecialchars($timetable[$day][$time]['event_description']); ?>"}'>
+                            <div class="event-box" data-modal-content='{"event_name": "<?php echo htmlspecialchars($timetable[$day][$time]['event_name']); ?>", "event_description": "<?php echo htmlspecialchars($timetable[$day][$time]['event_description']); ?>", "day_of_week": "<?php echo $day; ?>", "time_slot": "<?php echo $time; ?>", "course_id": "<?php echo $course_id; ?>"}'>
                                 <?php echo htmlspecialchars(substr($timetable[$day][$time]['event_name'], 0, 20)); // Limit to 20 characters for cropping ?>
                                 <?php if (strlen($timetable[$day][$time]['event_name']) > 20) echo '...'; ?>
                             </div>
@@ -177,46 +199,21 @@ $stmt->close();
                 <?php endforeach; ?>
             </tr>
         <?php endforeach; ?>
-    </tr>
     </table>
 
     <!-- Modal -->
     <div id="eventModal" class="modal">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <span class="close-modal">×</span>
             <h3 id="modalEventName"></h3>
             <p id="modalEventDescription"></p>
+            <?php if ($_SESSION['role'] === 'teacher'): ?>
+                <button class="delete-button" onclick="deleteTimetableSlot()">Delete</button>
+            <?php endif; ?>
         </div>
     </div>
 
-    <script>
-        // JavaScript for modal functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const eventBoxes = document.querySelectorAll('.event-box');
-            const modal = document.getElementById('eventModal');
-            const closeModal = document.querySelector('.close-modal');
-            const modalEventName = document.getElementById('modalEventName');
-            const modalEventDescription = document.getElementById('modalEventDescription');
-
-            eventBoxes.forEach(box => {
-                box.addEventListener('click', function() {
-                    const content = JSON.parse(this.getAttribute('data-modal-content'));
-                    modalEventName.textContent = content.event_name;
-                    modalEventDescription.textContent = content.event_description;
-                    modal.style.display = 'block';
-                });
-            });
-
-            closeModal.addEventListener('click', function() {
-                modal.style.display = 'none';
-            });
-
-            window.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-        });
-    </script>
+    <!-- Reference the external script -->
+    <script src="../js/timetable_script.js"></script>
 </body>
 </html>

@@ -7,15 +7,38 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
+// Handle unit creation (teachers only)
+if ($_SESSION['role'] === 'teacher' && isset($_POST['create_unit'])) {
+    $module_id = $_POST['module_id'];
+    $title = sanitize_input($_POST['unit_title']);
+    $description = sanitize_input($_POST['unit_description']);
+    
+    $stmt = $conn->prepare("INSERT INTO units (module_id, title, description, created_by) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("issi", $module_id, $title, $description, $_SESSION['user_id']);
+    
+    if ($stmt->execute()) {
+        $_SESSION['success'] = "Unit created successfully";
+    } else {
+        $_SESSION['error'] = "Failed to create unit: " . $conn->error;
+    }
+}
+
 // Handle assignment creation (teachers only)
 if ($_SESSION['role'] === 'teacher' && isset($_POST['create_assignment'])) {
-    $module_id = $_POST['module_id'];
+    $unit_id = $_POST['unit_id'];
     $title = sanitize_input($_POST['title']);
     $description = sanitize_input($_POST['description']);
     $due_date = $_POST['due_date'];
     
-    $stmt = $conn->prepare("INSERT INTO assignments (teacher_id, module_id, assignment_title, description, due_date) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("iisss", $_SESSION['user_id'], $module_id, $title, $description, $due_date);
+    // Fetch module_id from units
+    $stmt = $conn->prepare("SELECT module_id FROM units WHERE id = ?");
+    $stmt->bind_param("i", $unit_id);
+    $stmt->execute();
+    $unit = $stmt->get_result()->fetch_assoc();
+    $module_id = $unit['module_id'];
+    
+    $stmt = $conn->prepare("INSERT INTO assignments (teacher_id, module_id, unit_id, assignment_title, description, due_date) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("iiisss", $_SESSION['user_id'], $module_id, $unit_id, $title, $description, $due_date);
     
     if ($stmt->execute()) {
         $_SESSION['success'] = "Assignment created successfully";
@@ -121,23 +144,49 @@ function sanitize_input($data) {
                             </form>
                         </section>
 
+                        <!-- Teacher: Create Unit (Card Style) -->
+                        <section class="card">
+                            <form method="POST" action="">
+                                <h2>Create Unit</h2>
+                                <p>Create a new unit for your modules.</p>
+                                <select name="module_id" required>
+                                    <option value="">Select Module</option>
+                                    <?php
+                                    $stmt = $conn->prepare("SELECT id, name FROM modules WHERE course_id = ?");
+                                    $stmt->bind_param("i", $_SESSION['course_id']);
+                                    $stmt->execute();
+                                    $modules = $stmt->get_result();
+                                    while ($module = $modules->fetch_assoc()) {
+                                        echo "<option value='{$module['id']}'>" . htmlspecialchars($module['name']) . "</option>";
+                                    }
+                                    $stmt->close();
+                                    ?>
+                                </select>
+                                <input type="text" name="unit_title" placeholder="Unit Title" required style="margin: 0.5rem 0; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
+                                <textarea name="unit_description" placeholder="Unit Description" style="margin: 0.5rem 0; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc; width: 100%;"></textarea>
+                                <button type="submit" name="create_unit">Create Unit</button>
+                            </form>
+                        </section>
+
                         <!-- Teacher: Create Assignment (Card Style) -->
                         <section class="card">
                             <form method="POST" action="">
                                 <h2>Create Assignment</h2>
-                                <p>Set a new assignment for your modules.</p>
-                                <select name="module_id" required>
-                                    <option value="">Select Module</option>
+                                <p>Set a new assignment for your units.</p>
+                                <select name="unit_id" required>
+                                    <option value="">Select Unit</option>
                                     <?php
-                                    $result = $conn->query("SELECT id, name FROM modules");
-                                    if ($result) {
-                                        while ($module = $result->fetch_assoc()) {
-                                            echo "<option value='{$module['id']}'>" . htmlspecialchars($module['name']) . "</option>";
-                                        }
-                                    } else {
-                                        echo "<option value=''>No modules available</option>";
-                                        error_log("Error fetching modules: " . $conn->error);
+                                    $stmt = $conn->prepare("SELECT u.id, u.title, m.name as module_name 
+                                                            FROM units u 
+                                                            JOIN modules m ON u.module_id = m.id 
+                                                            WHERE m.course_id = ?");
+                                    $stmt->bind_param("i", $_SESSION['course_id']);
+                                    $stmt->execute();
+                                    $units = $stmt->get_result();
+                                    while ($unit = $units->fetch_assoc()) {
+                                        echo "<option value='{$unit['id']}'>" . htmlspecialchars($unit['module_name'] . ' - ' . $unit['title']) . "</option>";
                                     }
+                                    $stmt->close();
                                     ?>
                                 </select>
                                 <input type="text" name="title" placeholder="Assignment Title" required style="margin: 0.5rem 0; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
@@ -147,8 +196,16 @@ function sanitize_input($data) {
                             </form>
                         </section>
 
-                        <!-- List of created assignments and submissions (Card Style) -->
+                        <!-- Teacher: Manage Modules (Card Style) -->
                         <section class="card">
+                            <a href="modules/modules.php">
+                                <h2>Manage Modules</h2>
+                                <p>View and manage your modules, including uploading documents to units.</p>
+                            </a>
+                        </section>
+
+                        <!-- List of created assignments and submissions (Card Style) -->
+                        <section class="card" style="margin-bottom: 500px;">
                             <h2>Your Assignments</h2>
                             <p>View your assignments and submission counts.</p>
                             <?php
@@ -182,9 +239,9 @@ function sanitize_input($data) {
 
                         <!-- Show submitted assignments (Card Style) -->
                         <section class="card">
-                            <a href="modules/submissions.php">
-                                <h2>Your Submissions</h2>
-                                <p>Go to Submissions Page</p>
+                            <a href="modules/assignments.php">
+                                <h2>Your Assignments</h2>
+                                <p>Go to Assignments Page</p>
                             </a>
                         </section>
                     <?php endif; ?>
@@ -210,5 +267,7 @@ function sanitize_input($data) {
         </div>
     </footer>
     <script src="../js/profilescript.js"></script>
+    <!-- Reference the external script -->
+    <script src="../js/timetable_script.js"></script>
 </body>
 </html>
