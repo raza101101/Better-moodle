@@ -87,7 +87,7 @@ function sanitize_input($data) {
 <body>
     <header>
         <div class="container">
-            <a href="../index.html"><h1>Harzarian</h1></a>    
+            <a href="index.php"><h1>Harzarian</h1></a>    
             <nav>
                 <a>Welcome <?php echo $_SESSION['firstName']; ?></a>
             </nav>

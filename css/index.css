@@ -73,6 +73,7 @@ main {
     width: 58vh;
     height: 58vh;
     display: block;
+    border-radius: 8px;
 }
 
 .next, .prev {

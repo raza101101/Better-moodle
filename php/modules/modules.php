@@ -23,7 +23,7 @@ $course_name = $course ? $course['name'] : 'Unknown Course';
 <body>
     <header>
         <div class="container">
-            <a href="../../index.html"><h1>Harzarian</h1></a>    
+            <a href="../index.php"><h1>Harzarian</h1></a>    
             <nav>
             <a href="../profile.php">Welcome <?php echo htmlspecialchars($_SESSION['firstName']); ?></a>
             </nav>

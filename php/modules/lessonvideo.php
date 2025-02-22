@@ -11,7 +11,7 @@
         <header>
             <div class="container">
                 <!-- 'href' When clicked directs to specified page -->
-                <a href="../../index.html">
+                <a href="../index.php">
                     <h1>Harzarian</h1>
                 </a>    
                 <nav>

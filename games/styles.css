@@ -1,0 +1,214 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.2;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Header styles */
+header {
+    background-color: #1a4789;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100vw;
+}
+
+.container {
+    max-width: 90vw;
+    margin: 0 auto;
+    padding: 2vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.game-card {
+    width: 200px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    background-color: #f0f0f0;
+}
+
+.game-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #000;
+}
+
+.game-card p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.game-card a.button {
+    display: inline-block;
+    background-color: #004080;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.game-card a.button:hover {
+    background-color: #003366;
+    transform: translateY(-2px);
+}
+
+#game-area.card {
+    width: 400px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    margin-bottom: 100px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+#game-area.card:hover {
+    transform: translateY(-5px);
+    background-color: #f0f0f0;
+}
+
+input[type="text"], input[type="number"] {
+    padding: 10px;
+    width: 80%;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #0073e6;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+#feedback {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
+}
+
+.returnhome {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.returnbutton {
+    background-color: #004080;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.returnbutton:hover {
+    background-color: #003366;
+    transform: translateY(-2px);
+}
+
+/* Footer styles */
+footer {
+    background-color: #1a4789;
+    color: white;
+    margin-top: auto;
+    text-align: center;
+    padding: 1.3vh;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.footer-container a {
+    color: white;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.footer-container a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    main {
+        padding: 1.5rem;
+    }
+
+    .game-card {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    #game-area.card {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    .returnbutton {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
