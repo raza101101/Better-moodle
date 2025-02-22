@@ -163,7 +163,7 @@ function sanitize_input($data) {
                                     ?>
                                 </select>
                                 <input type="text" name="unit_title" placeholder="Unit Title" required style="margin: 0.5rem 0; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
-                                <textarea name="unit_description" placeholder="Unit Description" style="margin: 0.5rem 0; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc; width: 100%;"></textarea>
+                                <textarea name="unit_description" placeholder="Unit Description" style="margin: 0.5rem 0; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc; width: 95.5%;"></textarea>
                                 <button type="submit" name="create_unit">Create Unit</button>
                             </form>
                         </section>
@@ -190,7 +190,7 @@ function sanitize_input($data) {
                                     ?>
                                 </select>
                                 <input type="text" name="title" placeholder="Assignment Title" required style="margin: 0.5rem 0; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
-                                <textarea name="description" placeholder="Description" style="margin: 0.5rem 0; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc; width: 100%;"></textarea>
+                                <textarea name="description" placeholder="Description" style="margin: 0.5rem 0; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc; width: 95.5%;"></textarea>
                                 <input type="date" name="due_date" required style="margin: 0.5rem 0; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
                                 <button type="submit" name="create_assignment">Create Assignment</button>
                             </form>

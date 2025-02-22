@@ -102,6 +102,8 @@ header a {
     border: 1px solid #ccc;
     background-color: #fff; /* White background for inputs */
     color: #000; /* Black text for inputs */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    resize: none;
 }
 
 .card button {

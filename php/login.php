@@ -1,4 +1,8 @@
 <?php
+session_start(); // Start the session at the very top
+include("connect.php"); // Include the database connection
+
+// Redirect logged-in users to profile.php
 if (isset($_SESSION['email'])) {
     header("Location: profile.php");
     exit();
@@ -17,7 +21,7 @@ if (isset($_SESSION['email'])) {
         <!-- Page Header -->
         <header>
             <div class="container">
-                <a href="../index.html">
+                <a href="index.php">
                     <h1>Harzarian</h1>
                 </a>    
                 <nav>
@@ -29,8 +33,7 @@ if (isset($_SESSION['email'])) {
 
         <main>
             <?php
-            session_start();
-            // Display session messages
+            // Display session messages (no need for session_start() here since it's already started)
             if(isset($_SESSION['error'])) {
                 echo '<p class="error">' . $_SESSION['error'] . '</p>';
                 unset($_SESSION['error']);
@@ -75,12 +78,11 @@ if (isset($_SESSION['email'])) {
             </section>
         </main>
 
-
-
         <footer>
             <div class="footer-container">
                 <p>© 2024 Harzarian</p>
-                <a href="about_us.html">About Us</a> | <a href="contact.html">Contact Us</a> | <a href="cookies.html">Cookies Policy</a>  | <a href="privacy_policy.html">Privacy Policy</a>
+                <a href="about_us.html">About Us</a> | <a href="contact.html">Contact Us</a> | 
+                <a href="cookies.html">Cookies Policy</a> | <a href="privacy_policy.html">Privacy Policy</a>
             </div>
         </footer>
         <script src="../js/loginscript.js"></script>
