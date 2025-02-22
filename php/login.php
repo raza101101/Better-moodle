@@ -1,3 +1,13 @@
+<?php
+session_start();
+include("connect.php");
+
+if (isset($_SESSION['email'])) {
+    header("Location: profile.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
