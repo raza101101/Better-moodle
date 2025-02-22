@@ -6,7 +6,9 @@
 
 }
 .contactH1{
+    margin-top: 0px;
     text-decoration: underline;
+    padding-top: 15px;
 }
 
 #staffH{
@@ -177,8 +179,9 @@ footer {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 13px;
     outline: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .query-form input:focus,
@@ -197,6 +200,7 @@ footer {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s ease;
+    transform: translateX(8.5px);
 }
 
 .query-form button:hover {
