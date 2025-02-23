@@ -14,7 +14,7 @@ if (!isset($_SESSION['email'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Better Moodle Games</title>
+    <title>Harzarian Games</title>
     <link rel="stylesheet" href="styles.css"> <!-- Create or use an existing CSS file for styling -->
 </head>
 <body>
@@ -28,7 +28,7 @@ if (!isset($_SESSION['email'])) {
     </header>
     
     <main>
-        <h1 style="text-align: center; margin-bottom: 2rem;">Better Moodle Games</h1>
+        <h1 style="text-align: center; margin-bottom: 2rem;">Harzarian Games</h1>
 
         <div class="game-container">
             <div class="game-card">
@@ -49,7 +49,7 @@ if (!isset($_SESSION['email'])) {
         </div>
 
         <div class="returnhome" style="text-align: center; margin-top: 2rem;">
-            <a href="../profile.php" class="returnbutton">Back to Profile</a>
+            <a href="../index.html" class="returnbutton">Back to Home</a>
         </div>
     </main>
 
