@@ -179,8 +179,6 @@ footer {
     transform: scale(1.05);
 }
 
-/*Physcial products*/
-
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -199,23 +197,34 @@ footer {
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
+
 .product-image {
-    width: 200px;
-    height: 150px;
-    background: #000;
-    margin-bottom: 1rem;
+    width: 100%; 
+    max-width: 200px; 
+    height: 150px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .product-description {
-    background: #00ffee;
     padding: 0.5rem;
     margin: 1rem 0;
     width: 100%;
     text-align: center;
 }
 
+/* Button styling */
 .buy-button {
     background: #1a4789;
     color: white;
