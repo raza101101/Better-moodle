@@ -80,7 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $course_id !== null) {
         <div class="container">
             <a href="../index.html"><h1>Harzarian</h1></a>    
             <nav>
-                <a>Welcome <?php echo $_SESSION['firstName']; ?></a>
+                <?php if (isset($_SESSION['email'])): ?>
+                    <a>Welcome <?php echo htmlspecialchars($_SESSION['firstName']); ?></a> | 
+                    <a href="logout.php">Log Out</a>
+                <?php else: ?>
+                    <a href="login.php?action=login">Login</a>
+                    <a href="login.php?action=register">Register</a>
+                <?php endif; ?>
             </nav>
         </div>
     </header>
@@ -126,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $course_id !== null) {
     <footer>
         <div class="footer-container">
             <p>© 2024 Harzarian</p>
-            <a href="../about_us.html">About Us</a> | <a href="../contact.html">Contact Us</a> | 
+            <a href="../about_us.html">About Us</a> | <a href="../contact.php">Contact Us</a> | 
             <a href="../cookies.html">Cookies Policy</a> | <a href="../privacy_policy.html">Privacy Policy</a>
         </div>
     </footer>

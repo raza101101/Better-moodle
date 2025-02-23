@@ -1,16 +1,30 @@
-document.getElementById("contactForm").addEventListener("submit", function (event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    const responseMessage = document.getElementById('responseMessage');
 
-    let formData = new FormData(this);
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
 
-    fetch("contact.php", {
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("responseMessage").innerText = data;
-        document.getElementById("contactForm").reset();
-    })
-    .catch(error => console.error("Error:", error));
+        const formData = new FormData(form);
+
+        fetch('php/submit_query.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                responseMessage.style.color = '#00ff00';
+                responseMessage.textContent = data.message;
+                form.reset(); // Clear the form
+            } else {
+                responseMessage.style.color = '#ff0000';
+                responseMessage.textContent = data.message;
+            }
+        })
+        .catch(error => {
+            responseMessage.style.color = '#ff0000';
+            responseMessage.textContent = 'Error submitting query: ' + error.message;
+        });
+    });
 });
