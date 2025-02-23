@@ -61,7 +61,7 @@ $assignments = $stmt->get_result();
                 echo '<p><strong>Description:</strong> ' . htmlspecialchars($assignment['description']) . '</p>';
                 echo '<p><strong>Due Date:</strong> ' . htmlspecialchars($assignment['due_date']) . '</p>';
                 echo '<p><strong>Teacher:</strong> ' . htmlspecialchars($assignment['firstName'] . ' ' . $assignment['lastName']) . '</p>';
-                echo '<a href="modules/lessonsubmit.php?assignment_id=' . $assignment['assignment_id'] . '" class="button" style="display: inline-block; margin-top: 0.5rem;">Submit</a>';
+                echo '<a href="lessonsubmit.php?assignment_id=' . $assignment['assignment_id'] . '" class="button" style="display: inline-block; margin-top: 0.5rem;">Submit</a>';
                 echo '</section>';
             }
         } else {
