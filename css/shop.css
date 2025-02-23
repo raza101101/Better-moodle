@@ -179,5 +179,61 @@ footer {
     transform: scale(1.05);
 }
 
+/*Physcial products*/
 
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    margin-bottom: 100px;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 200px;
+    height: 150px;
+    background: #000;
+    margin-bottom: 1rem;
+}
+
+.product-description {
+    background: #00ffee;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    width: 100%;
+    text-align: center;
+}
+
+.buy-button {
+    background: #1a4789;
+    color: white;
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.buy-button:hover {
+    background: #003366;
+}
+
+.page-title {
+    text-align: center;
+    margin: 2rem 0;
+    color: #1a4789;
+    font-family: "Verdana", sans-serif;
+}
 
