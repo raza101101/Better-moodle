@@ -24,7 +24,7 @@ include("php/connect.php"); // Use your Harzarian database connection (adjust pa
                         <a>Welcome <?php echo htmlspecialchars($_SESSION['firstName']); ?></a> | 
                         <a href="php/logout.php">Log Out</a>
                     <?php else: ?>
-                        <a href="php/login.php?action=login">Login</a>
+                        <a href="php/login.php?action=login">Login</a> |
                         <a href="php/login.php?action=register">Register</a>
                     <?php endif; ?>
                 </nav>

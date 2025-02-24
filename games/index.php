@@ -49,7 +49,7 @@ if (!isset($_SESSION['email'])) {
         </div>
 
         <div class="returnhome" style="text-align: center; margin-top: 2rem;">
-            <a href="../index.html" class="returnbutton">Back to Home</a>
+            <a href="../php/index.php" class="returnbutton">Back to Home</a>
         </div>
     </main>
 

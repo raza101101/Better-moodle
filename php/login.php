@@ -29,7 +29,7 @@ if (isset($_SESSION['email'])) {
                         <a>Welcome <?php echo htmlspecialchars($_SESSION['firstName']); ?></a> | 
                         <a href="logout.php">Log Out</a>
                     <?php else: ?>
-                        <a href="login.php?action=login">Login</a>
+                        <a href="login.php?action=login">Login</a> |
                         <a href="login.php?action=register">Register</a>
                     <?php endif; ?>
                 </nav>
