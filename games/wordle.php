@@ -158,7 +158,8 @@ if (file_exists($wordFile)) {
         <div class="container">
             <a href="../php/index.php"><h1>Harzarian</h1></a>    
             <nav>
-                <a>Welcome <?php echo htmlspecialchars($_SESSION['firstName']); ?></a>
+                <a style="color: white;">Welcome <?php echo htmlspecialchars($_SESSION['firstName']); ?></a> | 
+                <a href="logout.php">Log Out</a>
             </nav>
         </div>
     </header>

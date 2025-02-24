@@ -63,8 +63,8 @@ if (isset($_FILES['document'])) {
             <a href="../index.php"><h1>Harzarian</h1></a>    
             <nav>
                 <?php if (isset($_SESSION['email'])): ?>
-                    <a>Welcome <?php echo htmlspecialchars($_SESSION['firstName']); ?></a> | 
-                    <a href="../logout.php">Log Out</a>
+                    <a style="color: white;">Welcome <?php echo htmlspecialchars($_SESSION['firstName']); ?></a> | 
+                    <a href="logout.php">Log Out</a>
                 <?php else: ?>
                     <a href="../login.php?action=login">Login</a> |
                     <a href="../login.php?action=register">Register</a>
