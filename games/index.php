@@ -44,7 +44,7 @@ if (!isset($_SESSION['email'])) {
             <div class="game-card">
                 <h3>Liverpool Hope Trivia</h3>
                 <p>How well do you know the university?</p>
-                <a href="trivia.php" class="button">Play Now</a>
+                <a href="wordsearch.php" class="button">Play Now</a>
             </div>
         </div>
 
