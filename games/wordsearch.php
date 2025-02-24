@@ -105,7 +105,7 @@ if (!isset($_SESSION['email'])) {
 <body>
     <header>
         <div class="container">
-            <a href="../index.php"><h1>Harzarian</h1></a>    
+            <a href="../php/index.php"><h1>Harzarian</h1></a>    
             <nav>
                 <a>Welcome <?php echo htmlspecialchars($_SESSION['firstName']); ?></a> | 
                 <a href="../php/logout.php">Log Out</a>
