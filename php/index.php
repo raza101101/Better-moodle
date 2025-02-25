@@ -42,7 +42,7 @@ if (!isset($_SESSION['email'])) {
                 </a>
             </section>
             <section class="card">
-                <a href="../ShopFrontPage.html">
+                <a href="../ShopFrontPage.php">
                     <h2>Shop</h2>
                     <p>Purchase merch, digital products, and more.</p>
                 </a>

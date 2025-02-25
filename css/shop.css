@@ -84,7 +84,7 @@ footer {
 /* Shop Styles */
 .WelcomeShop {
     color: #000000;
-    font-family: "Verdana", sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     font-size: 14px;
 }
@@ -101,7 +101,7 @@ footer {
     position: relative;
     top: 7vh;
     text-decoration: underline;
-    font-family: "Verdana", sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Digital Products Section */
@@ -113,7 +113,7 @@ footer {
     position: relative;
     top: 11vh; 
     text-decoration: underline;
-    font-family: "Verdana", sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Carousel with infinite scrolling */
@@ -157,14 +157,14 @@ footer {
     color: white;
     padding: 12px; 
     font-size: 14px;
-    font-family: 'Verdana', sans-serif; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
     text-align: center;
-    display: block;
     margin: 10px auto; 
+    font-weight: bold;
 }
 
 /* Fixes physical button postion*/
@@ -187,7 +187,6 @@ footer {
     padding: 2rem;
     margin: 0 auto;
     max-width: 1200px;
-    margin-bottom: 100px;
 }
 
 .product-card {
@@ -234,6 +233,7 @@ footer {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s ease;
+    font-weight: bold;
 }
 
 .buy-button:hover {
@@ -246,3 +246,26 @@ footer {
     color: #1a4789;
 }
 
+.returnhome {
+    text-align: center;
+    margin-bottom: 130px;
+}
+
+.returnbutton {
+    background-color: #004080;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.returnbutton:hover {
+    background-color: #003366;
+    transform: translateY(-2px);
+}
