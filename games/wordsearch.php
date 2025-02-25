@@ -4,7 +4,7 @@ include("../php/connect.php"); // Use your Harzarian database connection (adjust
 
 // Check if user is logged in
 if (!isset($_SESSION['email'])) {
-    header("Location: ../login.php");
+    header("Location: ../php/login.php");
     exit();
 }
 ?>
@@ -29,6 +29,7 @@ if (!isset($_SESSION['email'])) {
             grid-template-rows: repeat(10, 40px);
             gap: 2px;
             margin-bottom: 20px;
+            justify-content: center;
         }
 
         .grid div {
@@ -75,6 +76,7 @@ if (!isset($_SESSION['email'])) {
             margin-top: 10px;
             font-size: 18px;
             color: #333;
+            min-height: 30px;
         }
 
         .returnhome {
@@ -118,7 +120,7 @@ if (!isset($_SESSION['email'])) {
         <p style="text-align: center; margin-bottom: 2rem;">Find the words in the grid! Click letters to select them.</p>
 
         <div id="game-area" class="card">
-            <div class="grid">
+            <div id="wordsearch" class="grid">
                 <?php
                 // Example word list for the word search (in uppercase for consistency)
                 $wordList = [
@@ -256,84 +258,109 @@ if (!isset($_SESSION['email'])) {
             <a href="../cookies.html">Cookies Policy</a> | <a href="../privacy_policy.html">Privacy Policy</a>
         </div>
     </footer>
-    <script src="../js/games.js"></script>
     <script>
-        const wordsearch = document.getElementById('wordsearch');
-        const message = document.getElementById('message');
-        const selectedCells = [];
-        const foundWords = [];
-        let currentWord = "";
+        document.addEventListener('DOMContentLoaded', function() {
+            const wordsearch = document.getElementById('wordsearch');
+            const message = document.getElementById('message');
+            const selectedCells = [];
+            const foundWords = [];
+            let currentWord = "";
+            
+            // Clear any previous messages
+            message.textContent = "";
 
-        wordsearch.addEventListener('click', function(event) {
-            const cell = event.target;
+            wordsearch.addEventListener('click', function(event) {
+                const cell = event.target;
 
-            if (cell.className === 'letter') {
-                const x = parseInt(cell.getAttribute('data-x'));
-                const y = parseInt(cell.getAttribute('data-y'));
-                const letter = cell.getAttribute('data-letter');
+                if (cell.classList.contains('letter')) {
+                    const x = parseInt(cell.getAttribute('data-x'));
+                    const y = parseInt(cell.getAttribute('data-y'));
+                    const letter = cell.getAttribute('data-letter');
 
-                // If the cell is already selected, deselect it
-                if (selectedCells.some(cell => cell.x === x && cell.y === y)) {
-                    cell.classList.remove('selected');
-                    const index = selectedCells.findIndex(cell => cell.x === x && cell.y === y);
-                    selectedCells.splice(index, 1);
-                    currentWord = currentWord.slice(0, -1);
-                } else {
-                    // Select the cell
-                    cell.classList.add('selected');
-                    selectedCells.push({x, y, letter});
-                    currentWord += letter;
-                }
+                    // If the cell is already selected, deselect it and all cells after it
+                    const index = selectedCells.findIndex(selectedCell => selectedCell.x === x && selectedCell.y === y);
+                    if (index !== -1) {
+                        // Remove all cells from this point forward
+                        const removedCells = selectedCells.splice(index);
+                        removedCells.forEach(removedCell => {
+                            const cellElement = document.querySelector(`[data-x="${removedCell.x}"][data-y="${removedCell.y}"]`);
+                            if (cellElement) {
+                                cellElement.classList.remove('selected');
+                            }
+                        });
+                        currentWord = selectedCells.map(cell => cell.letter).join('');
+                    } else {
+                        // Add cell to selection if it's connected to the previous cell or it's the first cell
+                        const isAdjacent = selectedCells.length === 0 || 
+                            (Math.abs(selectedCells[selectedCells.length - 1].x - x) <= 1 && 
+                             Math.abs(selectedCells[selectedCells.length - 1].y - y) <= 1);
+                        
+                        if (isAdjacent) {
+                            cell.classList.add('selected');
+                            selectedCells.push({x, y, letter});
+                            currentWord += letter;
+                        } else {
+                            // Not adjacent, start new selection
+                            clearSelection();
+                            cell.classList.add('selected');
+                            selectedCells.push({x, y, letter});
+                            currentWord = letter;
+                        }
+                    }
 
-                // Check if word matches a word in the list (after 1+ letters)
-                if (currentWord.length > 1) {
+                    // Check if word matches a word in the list
                     checkWord();
                 }
-            }
-        });
+            });
 
-        function checkWord() {
-            const word = currentWord.toLowerCase();
-            const words = <?php echo json_encode(array_map('strtolower', $wordList)); ?>; // Convert wordList to lowercase for consistency
+            function checkWord() {
+                const words = <?php echo json_encode(array_map('strtolower', $wordList)); ?>;
+                const wordToCheck = currentWord.toLowerCase();
+                
+                // Check if the current word matches any word in the list
+                if (words.includes(wordToCheck) && !foundWords.includes(wordToCheck)) {
+                    foundWords.push(wordToCheck);
+                    
+                    // Mark cells as found
+                    selectedCells.forEach(cell => {
+                        const cellElement = document.querySelector(`[data-x="${cell.x}"][data-y="${cell.y}"]`);
+                        if (cellElement) {
+                            cellElement.classList.remove('selected');
+                            cellElement.classList.add('found');
+                        }
+                    });
 
-            if (words.includes(word) && !foundWords.includes(word)) {
-                foundWords.push(word);
-                selectedCells.forEach(cell => {
-                    const cellElement = document.querySelector(`[data-x="${cell.x}"][data-y="${cell.y}"]`);
-                    if (cellElement) {
-                        cellElement.classList.add('found');
+                    // Mark word as found in the list
+                    const wordElement = document.getElementById(`word-${wordToCheck}`);
+                    if (wordElement) {
+                        wordElement.classList.add('found');
                     }
-                });
 
-                // Cross out the found word in the list
-                const wordItem = document.getElementById(`word-${word}`);
-                if (wordItem) {
-                    wordItem.classList.add('found');
+                    message.textContent = `You found the word: ${currentWord.toUpperCase()}!`;
+                    
+                    // Clear selection
+                    selectedCells.length = 0;
+                    currentWord = "";
+                    
+                    // Check if all words are found
+                    if (foundWords.length === words.length) {
+                        message.textContent = 'Congratulations! You found all the words!';
+                    }
                 }
+            }
 
-                message.textContent = `You found the word: ${currentWord.toUpperCase()}!`;
-
-                // Clear selected cells and reset
-                selectedCells.length = 0;
-                currentWord = "";
-
-                // Check if all words are found
-                if (foundWords.length === words.length) {
-                    message.textContent = 'Congratulations! You found all the words!';
-                }
-            } else if (currentWord.length > 1 && !words.includes(word)) {
-                message.textContent = 'Not a valid word. Try again!';
-                // Deselect all cells if the word isn’t valid
+            function clearSelection() {
                 selectedCells.forEach(cell => {
                     const cellElement = document.querySelector(`[data-x="${cell.x}"][data-y="${cell.y}"]`);
-                    if (cellElement) {
+                    if (cellElement && !cellElement.classList.contains('found')) {
                         cellElement.classList.remove('selected');
                     }
                 });
                 selectedCells.length = 0;
                 currentWord = "";
+                message.textContent = "";
             }
-        }
+        });
     </script>
 </body>
 </html>

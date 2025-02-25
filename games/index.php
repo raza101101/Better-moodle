@@ -43,8 +43,8 @@ if (!isset($_SESSION['email'])) {
                 <a href="wordle.php" class="button">Play Now</a>
             </div>
             <div class="game-card">
-                <h3>Liverpool Hope Trivia</h3>
-                <p>How well do you know the university?</p>
+                <h3>Wordsearch</h3>
+                <p>How well do you know words?</p>
                 <a href="wordsearch.php" class="button">Play Now</a>
             </div>
         </div>
