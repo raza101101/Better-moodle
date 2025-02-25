@@ -33,17 +33,17 @@ if (!isset($_SESSION['email'])) {
         <div class="game-container">
             <div class="game-card">
                 <h3>Numbers Game</h3>
-                <p>Test your arithmetic skills</p>
+                <p>Test your algebra skills!</p>
                 <a href="numbers_game.php" class="button">Play Now</a>
             </div>
             <div class="game-card">
                 <h3>Wordle Clone</h3>
-                <p>Guess the five-letter word</p>
+                <p>Guess the five-letter word!</p>
                 <a href="wordle.php" class="button">Play Now</a>
             </div>
             <div class="game-card">
-                <h3>Liverpool Hope Trivia</h3>
-                <p>How well do you know the university?</p>
+                <h3>Wordsearch</h3>
+                <p>Find all the hidden words!</p>
                 <a href="wordsearch.php" class="button">Play Now</a>
             </div>
         </div>

@@ -1,12 +1,75 @@
 <?php
-session_start(); // Start the session at the top
-include("../php/connect.php"); // Use your Harzarian database connection (adjust path if needed)
+session_start();
 
-// Check if user is logged in
-if (!isset($_SESSION['email'])) {
-    header("Location: ../login.php");
-    exit();
+// List of computer science related words
+$words = ['algorithm', 'binary', 'database', 'html', 'css', 'javascript', 'python', 'function', 'variable', 'loop'];
+
+$gridSize = 10; // Size of the word search grid
+$grid = array_fill(0, $gridSize, array_fill(0, $gridSize, '')); // Create an empty grid
+
+// Helper function to insert a word into the grid
+function insertWordIntoGrid($word, $grid) {
+    $wordLength = strlen($word);
+    $directions = [
+        [0, 1], // Horizontal
+        [1, 0], // Vertical
+        [1, 1], // Diagonal down-right
+        [-1, 1], // Diagonal up-right
+    ];
+
+    $placed = false;
+    while (!$placed) {
+        $direction = $directions[array_rand($directions)];
+        $startX = rand(0, $GLOBALS['gridSize'] - 1);
+        $startY = rand(0, $GLOBALS['gridSize'] - 1);
+        $endX = $startX + ($direction[0] * ($wordLength - 1));
+        $endY = $startY + ($direction[1] * ($wordLength - 1));
+
+        // Ensure the word fits within the grid bounds
+        if ($endX >= 0 && $endX < $GLOBALS['gridSize'] && $endY >= 0 && $endY < $GLOBALS['gridSize']) {
+            // Check if the word can fit
+            $canPlace = true;
+            for ($i = 0; $i < $wordLength; $i++) {
+                $x = $startX + ($direction[0] * $i);
+                $y = $startY + ($direction[1] * $i);
+                if ($grid[$x][$y] !== '') {
+                    $canPlace = false;
+                    break;
+                }
+            }
+
+            if ($canPlace) {
+                // Place the word
+                for ($i = 0; $i < $wordLength; $i++) {
+                    $x = $startX + ($direction[0] * $i);
+                    $y = $startY + ($direction[1] * $i);
+                    $grid[$x][$y] = strtoupper($word[$i]); // Capitalize the word letters
+                }
+                $placed = true;
+            }
+        }
+    }
+    return $grid;
 }
+
+// Insert words into the grid
+foreach ($words as $word) {
+    $grid = insertWordIntoGrid($word, $grid);
+}
+
+// Fill empty spaces with random letters
+$alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+for ($x = 0; $x < $gridSize; $x++) {
+    for ($y = 0; $y < $gridSize; $y++) {
+        if ($grid[$x][$y] === '') {
+            $grid[$x][$y] = $alphabet[rand(0, strlen($alphabet) - 1)];
+        }
+    }
+}
+
+// Store the grid in the session for later comparison
+$_SESSION['grid'] = $grid;
+$_SESSION['words'] = $words;
 ?>
 
 <!DOCTYPE html>
@@ -14,249 +77,89 @@ if (!isset($_SESSION['email'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Search Game</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Use Harzarian's existing CSS for consistency -->
+    <title>Computer Science Word Search Game</title>
     <style>
-        #game-area {
-            max-width: 600px;
-            margin: 0 auto;
+        body {
+            font-family: Arial, sans-serif;
             text-align: center;
+            padding: 20px;
         }
 
-        .grid {
+        .wordsearch {
             display: grid;
-            grid-template-columns: repeat(10, 40px);
-            grid-template-rows: repeat(10, 40px);
-            gap: 2px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(<?php echo $gridSize; ?>, 40px);
+            grid-gap: 5px;
+            justify-content: center;
+            margin-top: 20px;
         }
 
-        .grid div {
+        .wordsearch div {
             width: 40px;
             height: 40px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background-color: #f4f4f4;
-            cursor: pointer;
-            font-size: 20px;
-            font-weight: bold;
+            justify-content: center;
+            font-size: 18px;
             border: 1px solid #ccc;
-            transition: background-color 0.3s;
+            cursor: pointer;
+            text-transform: uppercase; /* Capitalize the text */
         }
 
-        .grid div.selected {
+        .selected {
             background-color: yellow;
         }
 
-        .grid div.found {
-            background-color: #4CAF50; /* Green, matching Harzarian design */
-            color: white;
+        .found {
+            background-color: lightgreen;
         }
 
         .word-list {
+            margin-top: 20px;
             list-style-type: none;
             padding: 0;
-            text-align: center;
         }
 
         .word-list li {
-            font-size: 18px;
             display: inline-block;
-            margin: 0 10px;
+            margin: 5px;
+            font-size: 18px;
         }
 
-        .word-list .found {
+        .crossed-out {
             text-decoration: line-through;
             color: gray;
         }
 
         #message {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #333;
-        }
-
-        .returnhome {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .returnbutton {
-            background-color: #004080;
-            color: #fff;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-size: 1rem;
+            font-size: 20px;
             font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .returnbutton:hover {
-            background-color: #003366;
-            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="../php/index.php"><h1>Harzarian</h1></a>    
-            <nav>
-                <a>Welcome <?php echo htmlspecialchars($_SESSION['firstName']); ?></a> | 
-                <a href="../php/logout.php">Log Out</a>
-            </nav>
-        </div>
-    </header>
+    <h1>Computer Science Word Search Game</h1>
+    <div id="message"></div>
     
-    <main>
-        <h2 style="text-align: center; margin-bottom: 1rem;">Word Search Game</h2>
-        <p style="text-align: center; margin-bottom: 2rem;">Find the words in the grid! Click letters to select them.</p>
+    <div class="wordsearch" id="wordsearch">
+        <?php
+        // Generate the grid on the page
+        for ($x = 0; $x < $gridSize; $x++) {
+            for ($y = 0; $y < $gridSize; $y++) {
+                echo "<div data-x='$x' data-y='$y'>" . htmlspecialchars($grid[$x][$y]) . "</div>";
+            }
+        }
+        ?>
+    </div>
 
-        <div id="game-area" class="card">
-            <div class="grid">
-                <?php
-                // Example word list for the word search (in uppercase for consistency)
-                $wordList = [
-                    "ARRAY", "LOOP", "FUNCTION", "ALGORITHM", "RECURSION", "VARIABLE", "OBJECT", "CLASS", "METHOD", "CONDITION"
-                ];
+    <ul class="word-list" id="wordList">
+        <?php
+        // Display the list of words to find
+        foreach ($words as $word) {
+            echo "<li id='word-$word'>$word</li>";
+        }
+        ?>
+    </ul>
 
-                $gridSize = 10;  // 10x10 grid
-                $grid = generateGrid($gridSize, $wordList);
-
-                // Function to generate the word search grid with max attempts to prevent infinite loops
-                function generateGrid($gridSize, $wordList) {
-                    $grid = array_fill(0, $gridSize, array_fill(0, $gridSize, ''));
-                    $maxAttempts = 100; // Prevent infinite loops
-
-                    foreach ($wordList as $word) {
-                        $attempts = 0;
-                        $placed = false;
-                        while (!$placed && $attempts < $maxAttempts) {
-                            $placed = placeWordInGrid($grid, $word, $gridSize);
-                            $attempts++;
-                        }
-                        if (!$placed) {
-                            // Log or handle failure (e.g., skip word or reduce grid size)
-                            error_log("Failed to place word: " . $word . " after $attempts attempts");
-                        }
-                    }
-
-                    // Fill remaining empty spaces with random letters
-                    for ($i = 0; $i < $gridSize; $i++) {
-                        for ($j = 0; $j < $gridSize; $j++) {
-                            if ($grid[$i][$j] === '') {
-                                $grid[$i][$j] = chr(rand(65, 90)); // Random capital letter (A-Z)
-                            }
-                        }
-                    }
-
-                    return $grid;
-                }
-
-                // Function to place a word in the grid at a random position with max attempts
-                function placeWordInGrid(&$grid, $word, $gridSize) {
-                    $wordLength = strlen($word);
-                    $directions = ['horizontal', 'vertical', 'diagonal'];
-                    $maxAttempts = 10; // Limit attempts per word placement
-                    $attempts = 0;
-
-                    while ($attempts < $maxAttempts) {
-                        $direction = $directions[rand(0, count($directions) - 1)];
-                        $row = rand(0, $gridSize - 1);
-                        $col = rand(0, $gridSize - 1);
-
-                        if ($direction === 'horizontal' && $col + $wordLength <= $gridSize) {
-                            $canPlace = true;
-                            for ($i = 0; $i < $wordLength; $i++) {
-                                if ($grid[$row][$col + $i] !== '' && $grid[$row][$col + $i] !== $word[$i]) {
-                                    $canPlace = false;
-                                    break;
-                                }
-                            }
-                            if ($canPlace) {
-                                for ($i = 0; $i < $wordLength; $i++) {
-                                    $grid[$row][$col + $i] = $word[$i];
-                                }
-                                return true;
-                            }
-                        }
-
-                        if ($direction === 'vertical' && $row + $wordLength <= $gridSize) {
-                            $canPlace = true;
-                            for ($i = 0; $i < $wordLength; $i++) {
-                                if ($grid[$row + $i][$col] !== '' && $grid[$row + $i][$col] !== $word[$i]) {
-                                    $canPlace = false;
-                                    break;
-                                }
-                            }
-                            if ($canPlace) {
-                                for ($i = 0; $i < $wordLength; $i++) {
-                                    $grid[$row + $i][$col] = $word[$i];
-                                }
-                                return true;
-                            }
-                        }
-
-                        if ($direction === 'diagonal' && $row + $wordLength <= $gridSize && $col + $wordLength <= $gridSize) {
-                            $canPlace = true;
-                            for ($i = 0; $i < $wordLength; $i++) {
-                                if ($grid[$row + $i][$col + $i] !== '' && $grid[$row + $i][$col + $i] !== $word[$i]) {
-                                    $canPlace = false;
-                                    break;
-                                }
-                            }
-                            if ($canPlace) {
-                                for ($i = 0; $i < $wordLength; $i++) {
-                                    $grid[$row + $i][$col + $i] = $word[$i];
-                                }
-                                return true;
-                            }
-                        }
-
-                        $attempts++;
-                    }
-
-                    return false; // Failed to place word after max attempts
-                }
-
-                // Generate the grid with data-x and data-y attributes for position tracking
-                for ($i = 0; $i < $gridSize; $i++) {
-                    for ($j = 0; $j < $gridSize; $j++) {
-                        echo "<div class='letter' data-x='$j' data-y='$i' data-letter='" . htmlspecialchars($grid[$i][$j]) . "'>" . $grid[$i][$j] . "</div>";
-                    }
-                }
-                ?>
-            </div>
-
-            <ul id="wordList" class="word-list">
-                <?php
-                // Display word list at the bottom and style found words
-                foreach ($wordList as $word) {
-                    echo "<li class='word' id='word-" . strtolower($word) . "'>" . $word . "</li>";
-                }
-                ?>
-            </ul>
-            <div id="message"></div> <!-- Add message element for feedback -->
-
-            <div class="returnhome" style="text-align: center; margin-top: 2rem;">
-                <a href="index.php" class="returnbutton">Back to Games</a>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="footer-container">
-            <p>© 2024 Harzarian</p>
-            <a href="../about_us.html">About Us</a> | <a href="../contact.php">Contact Us</a> | 
-            <a href="../cookies.html">Cookies Policy</a> | <a href="../privacy_policy.html">Privacy Policy</a>
-        </div>
-    </footer>
-    <script src="../js/games.js"></script>
     <script>
         const wordsearch = document.getElementById('wordsearch');
         const message = document.getElementById('message');
@@ -267,10 +170,10 @@ if (!isset($_SESSION['email'])) {
         wordsearch.addEventListener('click', function(event) {
             const cell = event.target;
 
-            if (cell.className === 'letter') {
+            if (cell.tagName === 'DIV') {
                 const x = parseInt(cell.getAttribute('data-x'));
                 const y = parseInt(cell.getAttribute('data-y'));
-                const letter = cell.getAttribute('data-letter');
+                const letter = cell.innerText;
 
                 // If the cell is already selected, deselect it
                 if (selectedCells.some(cell => cell.x === x && cell.y === y)) {
@@ -285,7 +188,7 @@ if (!isset($_SESSION['email'])) {
                     currentWord += letter;
                 }
 
-                // Check if word matches a word in the list (after 1+ letters)
+                // Check if word matches a word in the list
                 if (currentWord.length > 1) {
                     checkWord();
                 }
@@ -294,44 +197,26 @@ if (!isset($_SESSION['email'])) {
 
         function checkWord() {
             const word = currentWord.toLowerCase();
-            const words = <?php echo json_encode(array_map('strtolower', $wordList)); ?>; // Convert wordList to lowercase for consistency
+            const words = <?php echo json_encode($words); ?>;
 
             if (words.includes(word) && !foundWords.includes(word)) {
                 foundWords.push(word);
                 selectedCells.forEach(cell => {
                     const cellElement = document.querySelector(`[data-x="${cell.x}"][data-y="${cell.y}"]`);
-                    if (cellElement) {
-                        cellElement.classList.add('found');
-                    }
+                    cellElement.classList.add('found');
                 });
 
                 // Cross out the found word in the list
-                const wordItem = document.getElementById(`word-${word}`);
-                if (wordItem) {
-                    wordItem.classList.add('found');
-                }
+                document.getElementById(`word-${currentWord}`).classList.add('crossed-out');
+                message.textContent = `You found the word: ${currentWord}!`;
 
-                message.textContent = `You found the word: ${currentWord.toUpperCase()}!`;
-
-                // Clear selected cells and reset
+                // Clear selected cells
                 selectedCells.length = 0;
                 currentWord = "";
 
-                // Check if all words are found
                 if (foundWords.length === words.length) {
                     message.textContent = 'Congratulations! You found all the words!';
                 }
-            } else if (currentWord.length > 1 && !words.includes(word)) {
-                message.textContent = 'Not a valid word. Try again!';
-                // Deselect all cells if the word isn’t valid
-                selectedCells.forEach(cell => {
-                    const cellElement = document.querySelector(`[data-x="${cell.x}"][data-y="${cell.y}"]`);
-                    if (cellElement) {
-                        cellElement.classList.remove('selected');
-                    }
-                });
-                selectedCells.length = 0;
-                currentWord = "";
             }
         }
     </script>
