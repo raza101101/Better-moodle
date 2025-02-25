@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     <body>
         <header>
             <div class="container">
-                <a href="../php/index.php">
+                <a href="index.php">
                     <h1>Harzarian</h1>
                 </a>
                 <nav>

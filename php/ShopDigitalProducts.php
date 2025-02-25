@@ -32,7 +32,7 @@ if (!isset($_SESSION['cart'])) {
     <body>
         <header>
             <div class="container">
-                <a href="php/index.php">
+                <a href="index.php">
                     <h1>Harzarian</h1>
                 </a>
                 <nav>
