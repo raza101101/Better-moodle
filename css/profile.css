@@ -61,6 +61,38 @@ header a {
     text-decoration: none;
 }
 
+input[type=file] {
+    color: #004080;
+    z-index: 1;
+    position: absolute;
+    width: 16%;
+    height: 4.7%;
+    transform: translateY(-1px);
+    cursor: pointer;
+}
+
+input[type=file]::file-selector-button {
+    display: none;
+}
+
+.buttonPFP {
+    transform: translateY(-10px);
+    width: 100%;
+    z-index: -1;
+    max-width: 260px;
+    background: #004080;
+    color: white;
+    padding: 12px;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    margin: 4px auto;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 /* Cards (copied directly from index.css) */
 .card {
     width: 400px;

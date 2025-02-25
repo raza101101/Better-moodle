@@ -124,7 +124,7 @@ function sanitize_input($data) {
                 $user = $result->fetch_assoc();
 
                 // Define default profile picture
-                $default_image = "../media/default.jpg";
+                $default_image = "../media/default.png";
 
                 // Check if the user has uploaded a custom profile picture
                 if (!empty($user['profile_picture'])) {
@@ -147,13 +147,16 @@ function sanitize_input($data) {
 
                 <!-- Profile Picture Upload Form -->
                 <form action="upload_profile_picture.php" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="profile_picture" accept="image/*" required>
-                    <button type="submit" name="upload_picture">Upload</button>
+                    <input type="file" size="60" name="profile_picture" accept="image/*" required>
+                    <button class="buttonPFP">
+                        Choose File
+                    </button>
+                    <button type="submit" class="buttonPFP" name="upload_picture">Upload</button>
                 </form>
 
                 <!-- Remove Profile Picture Button -->
                 <form action="remove_profile_picture.php" method="POST">
-                    <button type="submit" name="remove_picture">Remove Profile Picture</button>
+                    <button type="submit" class="buttonPFP" name="remove_picture">Remove Profile Picture</button>
                 </form>
             </div>
 
