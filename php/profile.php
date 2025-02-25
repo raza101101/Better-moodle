@@ -113,6 +113,51 @@ function sanitize_input($data) {
             }
             ?>
             <h1 style="font-size: 40px; font-weight: bold;">Hello <?php echo $_SESSION['firstName'] . ' ' . $_SESSION['lastName']; ?>!</h1>
+
+            <div class="profile-picture-container">
+                <?php
+                // Fetch the latest profile picture from the database
+                $stmt = $conn->prepare("SELECT profile_picture FROM users WHERE id = ?");
+                $stmt->bind_param("i", $_SESSION['user_id']);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $user = $result->fetch_assoc();
+
+                // Define default profile picture
+                $default_image = "../media/default.jpg";
+
+                // Check if the user has uploaded a custom profile picture
+                if (!empty($user['profile_picture'])) {
+                    $profile_picture = "uploads/" . $user['profile_picture'];
+
+                    // Verify if the file actually exists
+                    if (!file_exists($profile_picture)) {
+                        $profile_picture = $default_image;
+                    }
+                } else {
+                    $profile_picture = $default_image;
+                }
+
+                // Update session variable to reflect the correct profile picture
+                $_SESSION['profile_picture'] = $profile_picture;
+                ?>
+
+                <!-- Display Profile Picture -->
+                <img src="<?php echo htmlspecialchars($_SESSION['profile_picture']); ?>" alt="Profile Picture" class="profile-picture">
+
+                <!-- Profile Picture Upload Form -->
+                <form action="upload_profile_picture.php" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="profile_picture" accept="image/*" required>
+                    <button type="submit" name="upload_picture">Upload</button>
+                </form>
+
+                <!-- Remove Profile Picture Button -->
+                <form action="remove_profile_picture.php" method="POST">
+                    <button type="submit" name="remove_picture">Remove Profile Picture</button>
+                </form>
+            </div>
+
+
             <p>Role: <?php echo ucfirst($_SESSION['role']); ?> | <a href="logout.php">Log Out</a></p>
 
             <?php
